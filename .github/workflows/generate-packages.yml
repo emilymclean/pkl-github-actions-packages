@@ -35,11 +35,11 @@ jobs:
           run: |
             pkl-github-actions-step-generator from-remote "${{ matrix.package.name }}" \
               ${{ matrix.package.deprecated && '--deprecated' || '' }} \
-              -o "output/action.yml" \
+              -o "output/action.pkl" \
               --generate-pklproject \
               --package-baseuri "emilym.cl/pkl-github-actions-packages/${{ matrix.package.name }}" \
               --package-output "output/PklProject" \
-              --yaml-constraints-file "constraints.yml" \
+              --yaml-constraints-file "constraints.yml"
         - name: Check output
           run: |
             ls -l output/
