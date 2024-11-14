@@ -4,6 +4,7 @@ class Package {
     deprecated: Boolean = false
 
     fixed artifactName = "package_\(name.replaceAll("/", "_"))"
+    fixed nameLastPart = name.split("/").last
 }
 
 package = new Listing<Package> {

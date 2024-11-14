@@ -4,7 +4,8 @@
       "name": "actions/checkout@v4",
       "version": "1.0.0",
       "deprecated": false,
-      "artifactName": "package_actions_checkout@v4"
+      "artifactName": "package_actions_checkout@v4",
+      "nameLastPart": "checkout@v4"
     }
   ]
 }
