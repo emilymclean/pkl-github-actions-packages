@@ -5,7 +5,18 @@
       "version": "1.0.0",
       "deprecated": false,
       "artifactName": "package_actions_checkout@v4",
-      "nameLastPart": "checkout@v4"
+      "packageName": "checkout@v4@1.0.0",
+      "buildPath": ".out/actions/checkout@v4@1.0.0/",
+      "outputPath": "pkg/actions/"
+    },
+    {
+      "name": "gittools/actions/gitversion/setup@v3.0.0",
+      "version": "1.0.0",
+      "deprecated": false,
+      "artifactName": "package_gittools_actions_gitversion_setup@v3.0.0",
+      "packageName": "setup@v3.0.0@1.0.0",
+      "buildPath": ".out/gittools/actions/gitversion/setup@v3.0.0@1.0.0/",
+      "outputPath": "pkg/gittools/actions/gitversion/"
     }
   ]
 }

@@ -47,8 +47,8 @@ jobs:
         run: | 
           mkdir -p "pkg/${{ matrix.package.name }}"
           pkl project package --skip-publish-check ./output
-          sed -i "s|pkl-github-actions-packages/${{ matrix.package.name }}/${{ matrix.package.name }}|pkl-github-actions-packages/${{ matrix.package.name }}|g" ".out/${{ matrix.package.name }}@${{ matrix.package.version }}/${{ matrix.package.nameLastPart }}@${{ matrix.package.version }}"
-          mv .out/*/* "pkg/"
+          sed -i "s|pkl-github-actions-packages/${{ matrix.package.name }}/|pkl-github-actions-packages/|g" "${{ matrix.package.buildPath }}/${{ matrix.package.packageName }}"
+          mv "${{ matrix.package.buildPath }}/*" "${{ matrix.package.outputPath }}"
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
@@ -70,7 +70,9 @@ jobs:
         with:
           path: artifacts
           pattern: package_*
-      - run: ls -lR artifacts
+      - run: | 
+          mv artifacts/*/* pages/
+          ls -lR pages/
       # - uses: stefanzweifel/git-auto-commit-action@v5
       #   with:
       #     repository: ./pages

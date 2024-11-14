@@ -3,12 +3,19 @@ class Package {
     version: String = "1.0.0"
     deprecated: Boolean = false
 
+    hidden fixed nameComponents = name.split("/")
+
     fixed artifactName = "package_\(name.replaceAll("/", "_"))"
-    fixed nameLastPart = name.split("/").last
+    fixed packageName = "\(nameComponents.last)@\(version)"
+    fixed buildPath = ".out/\(name)@\(version)/"
+    fixed outputPath = "pkg/\(nameComponents.take(nameComponents.length - 1).join("/"))/"
 }
 
 package = new Listing<Package> {
     new Package {
         name = "actions/checkout@v4"
+    }
+    new Package {
+        name = "gittools/actions/gitversion/setup@v3.0.0"
     }
 }
