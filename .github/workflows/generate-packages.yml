@@ -48,7 +48,7 @@ jobs:
           fi
           mkdir -p "tracking/${{ matrix.package.outputPath }}"
           echo "continue=true" >> $GITHUB_ENV
-          echo "$current_sha" > ${{ matrix.package.name }}.sha
+          echo "$current_sha" > "tracking/${{ matrix.package.name }}.sha"
       - name: Upload artifact
         if: env.continue
         uses: actions/upload-artifact@v4
