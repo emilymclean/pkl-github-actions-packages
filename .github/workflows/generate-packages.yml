@@ -120,8 +120,12 @@ jobs:
           path: shas
           pattern: sha_*
       - run: | 
-          rsync -av artifacts/*/ pages/
-          rsync -av shas/*/ tracking/
+          if [ -n "$( ls -A 'artifacts/' )" ]; then
+            rsync -av artifacts/*/ pages/
+          fi
+          if [ -n "$( ls -A 'shas/' )" ]; then
+            rsync -av shas/*/ tracking/
+          fi
           ls -lR pages/
       - uses: stefanzweifel/git-auto-commit-action@v5
         with:
