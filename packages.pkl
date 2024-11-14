@@ -3,7 +3,7 @@ class Package {
     deprecated: Boolean = false
 }
 
-packages = new Listing<Package> {
+package = new Listing<Package> {
     new Package {
         name = "actions/checkout@v4"
     }
