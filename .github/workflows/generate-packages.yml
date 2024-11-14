@@ -34,7 +34,7 @@ jobs:
         - name: Build package
           run: >
             pkl-github-actions-step-generator from-remote "${{ matrix.package.name }}"
-              ${{ matrix.package.deprecated && "--deprecated" || "" }} -o "output/action.yml" --generate-pklproject
+              ${{ matrix.package.deprecated && '--deprecated' || '' }} -o "output/action.yml" --generate-pklproject
               --package-baseuri "emilym.cl/pkl-github-actions-packages/${{ matrix.package.name }}"
               --package-output "output/PklProject"
         - name: Check output
