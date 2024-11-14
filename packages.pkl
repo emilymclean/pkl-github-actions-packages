@@ -28,4 +28,7 @@ package = new Listing<Package> {
     new Package {
         name = "gittools/actions/gitversion/setup@v3.0.0"
     }
+    new Package {
+        name = "gittools/actions/gitversion/execute@v3.0.0"
+    }
 }

@@ -47,6 +47,18 @@
       "outputPath": "gittools/actions/gitversion/",
       "repository": "gittools/actions",
       "ref": "v3.0.0"
+    },
+    {
+      "name": "gittools/actions/gitversion/execute@v3.0.0",
+      "version": "1.0.0",
+      "deprecated": false,
+      "artifactName": "package_gittools_actions_gitversion_execute@v3.0.0",
+      "shaArtifactName": "sha_gittools_actions_gitversion_execute@v3.0.0",
+      "packageName": "execute@v3.0.0@1.0.0",
+      "buildPath": ".out/gittools/actions/gitversion/execute@v3.0.0@1.0.0/",
+      "outputPath": "gittools/actions/gitversion/",
+      "repository": "gittools/actions",
+      "ref": "v3.0.0"
     }
   ]
 }
