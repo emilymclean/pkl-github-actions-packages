@@ -13,7 +13,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: |-
-          echo "packages=$(cat packages.json)" >> ${GITHUB_ENV}
+          echo "packages=$(echo $(cat packages.json))" >> ${GITHUB_ENV}
   build:
       runs-on: ubuntu-latest
       permissions:
