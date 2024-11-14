@@ -39,7 +39,7 @@ jobs:
               --generate-pklproject \
               --package-baseuri "emilym.cl/pkl-github-actions-packages/${{ matrix.package.name }}" \
               --package-output "output/PklProject" \
-              --yaml-constraints-file "constraints.yml"
+              --yaml-constraints-file "constraints.yml" \
               --package-version "${{ matrix.package.version }}"
         - name: Install pkl
           uses: pkl-community/setup-pkl@v0
