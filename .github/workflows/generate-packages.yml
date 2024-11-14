@@ -38,35 +38,35 @@ jobs:
       - run: |
           foreign_sha="$(cd foreign && git rev-parse HEAD)"
           echo "$foreign_sha"
-          shas_match="true"
+          continue="true"
           if [ -f "tracking/${{ matrix.package.name }}.sha" ]; then
             current_sha="$(cat tracking/${{ matrix.package.name }}.sha)"
             echo "$current_sha"
             if [[ "$foreign_sha" == "$current_sha" ]]; then
               echo "SHAs match! No changes necessary."
-              shas_match="false"
+              continue="false"
             fi
           fi
           mkdir -p "sha/${{ matrix.package.outputPath }}"
           echo "continue=$shas_match" >> $GITHUB_ENV
           echo "$foreign_sha" > "sha/${{ matrix.package.name }}.sha"
       - name: Upload artifact
-        if: env.continue
+        if: env.continue == "false"
         uses: actions/upload-artifact@v4
         with:
           name: ${{ matrix.package.shaArtifactName }}
           path: sha/
       - uses: actions/setup-python@v5
-        if: env.continue
+        if: env.continue == "false"
         with:
           python-version: '3.13'
       - name: Install generator
-        if: env.continue
+        if: env.continue == "false"
         run: | 
           pip install pkl-github-actions-step-generator==0.1.13
           mkdir output
       - name: Build package
-        if: env.continue
+        if: env.continue == "false"
         run: |
           pkl-github-actions-step-generator from-remote "${{ matrix.package.name }}" \
             ${{ matrix.package.deprecated && '--deprecated' || '' }} \
@@ -77,19 +77,19 @@ jobs:
             --yaml-constraints-file "constraints.yml" \
             --package-version "${{ matrix.package.version }}"
       - name: Install pkl
-        if: env.continue
+        if: env.continue == "false"
         uses: pkl-community/setup-pkl@v0
         with:
           pkl-version: 0.27.0
       - name: Package Pkl
-        if: env.continue
+        if: env.continue == "false"
         run: | 
           mkdir -p "pkg/${{ matrix.package.outputPath }}"
           pkl project package --skip-publish-check ./output
           sed -i "s|pkl-github-actions-packages/${{ matrix.package.name }}/|pkl-github-actions-packages/|g" "${{ matrix.package.buildPath }}/${{ matrix.package.packageName }}"
           mv ${{ matrix.package.buildPath }}* "pkg/${{ matrix.package.outputPath }}"
       - name: Upload artifact
-        if: env.continue
+        if: env.continue == "false"
         uses: actions/upload-artifact@v4
         with:
           name: ${{ matrix.package.artifactName }}
