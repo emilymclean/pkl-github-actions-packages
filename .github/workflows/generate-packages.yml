@@ -47,7 +47,8 @@ jobs:
         run: | 
           mkdir -p "pkg/${{ matrix.package.name }}"
           pkl project package --skip-publish-check ./output
-          mv .out/* "pkg/${{ matrix.package.name }}"
+          mv .out/*/* "pkg/"
+          sed -i "s|pkl-github-actions-packages/${{ matrix.package.name }}/|pkl-github-actions-packages/|g" "pkg/**/PklProject"
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
