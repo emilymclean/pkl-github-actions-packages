@@ -40,8 +40,16 @@ jobs:
               --package-baseuri "emilym.cl/pkl-github-actions-packages/${{ matrix.package.name }}" \
               --package-output "output/PklProject" \
               --yaml-constraints-file "constraints.yml"
-        - name: Check output
-          run: |
-            ls -l output/
-            cat output/action.pkl
-            cat output/PklProject
+        - name: Install pkl
+          uses: pkl-community/setup-pkl@v0
+          with:
+            pkl-version: 0.27.0
+        - name: Package Pkl
+          run: | 
+            pkl project package --skip-publish-check ./output
+            mv .out/*/* pkg
+        - name: Upload artifact
+          uses: actions/upload-artifact@v4
+          with:
+            name: ${{ matrix.package.name }}
+            path: pkg
