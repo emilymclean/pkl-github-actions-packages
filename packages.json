@@ -7,7 +7,9 @@
       "artifactName": "package_actions_checkout@v4",
       "packageName": "checkout@v4@1.0.0",
       "buildPath": ".out/actions/checkout@v4@1.0.0/",
-      "outputPath": "pkg/actions/"
+      "outputPath": "pkg/actions/",
+      "repository": "actions/checkout",
+      "ref": "v4"
     },
     {
       "name": "actions/upload-artifact@v4",
@@ -16,7 +18,9 @@
       "artifactName": "package_actions_upload-artifact@v4",
       "packageName": "upload-artifact@v4@1.0.0",
       "buildPath": ".out/actions/upload-artifact@v4@1.0.0/",
-      "outputPath": "pkg/actions/"
+      "outputPath": "pkg/actions/",
+      "repository": "actions/upload-artifact",
+      "ref": "v4"
     },
     {
       "name": "actions/download-artifact@v4",
@@ -25,7 +29,9 @@
       "artifactName": "package_actions_download-artifact@v4",
       "packageName": "download-artifact@v4@1.0.0",
       "buildPath": ".out/actions/download-artifact@v4@1.0.0/",
-      "outputPath": "pkg/actions/"
+      "outputPath": "pkg/actions/",
+      "repository": "actions/download-artifact",
+      "ref": "v4"
     },
     {
       "name": "gittools/actions/gitversion/setup@v3.0.0",
@@ -34,7 +40,9 @@
       "artifactName": "package_gittools_actions_gitversion_setup@v3.0.0",
       "packageName": "setup@v3.0.0@1.0.0",
       "buildPath": ".out/gittools/actions/gitversion/setup@v3.0.0@1.0.0/",
-      "outputPath": "pkg/gittools/actions/gitversion/"
+      "outputPath": "pkg/gittools/actions/gitversion/",
+      "repository": "gittools/actions",
+      "ref": "v3.0.0"
     }
   ]
 }

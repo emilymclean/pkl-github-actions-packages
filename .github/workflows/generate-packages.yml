@@ -4,6 +4,9 @@ name: Generate Packages
   push:
     branches:
     - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
   packages-list:
@@ -22,6 +25,27 @@ jobs:
       matrix: ${{fromJson(needs.packages-list.outputs.packages)}}
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          repository: ${{ matrix.package.repository }}
+          ref: ${{ matrix.package.ref }}
+          path: foreign
+      - uses: actions/checkout@v4
+        with:
+          ref: tracking
+          path: tracking
+          fetch-tags: true
+      - run: |
+          foreign_sha="$(cd foreign && git rev-parse HEAD)"
+          echo "$foreign_sha"
+          if [ -f "${{ matrix.package.name }}.sha" ]; then
+            current_sha="$(cat ${{ matrix.package.name }}.sha)"
+            echo "$current_sha"
+            if [[ "$foreign_sha" == "$current_sha" ]]; then
+              exit 0
+            fi
+            echo "$current_sha" > ${{ matrix.package.name }}.sha
+          fi
       - uses: actions/setup-python@v5
         with:
           python-version: '3.13'
@@ -56,6 +80,7 @@ jobs:
           path: pkg
   publish:
     runs-on: ubuntu-latest
+    if: github.event_name != 'pull_request'
     permissions:
       contents: write
     needs: 

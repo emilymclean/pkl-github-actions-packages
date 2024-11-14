@@ -9,6 +9,9 @@ class Package {
     fixed packageName = "\(nameComponents.last)@\(version)"
     fixed buildPath = ".out/\(name)@\(version)/"
     fixed outputPath = "pkg/\(nameComponents.take(nameComponents.length - 1).join("/"))/"
+
+    fixed repository = nameComponents.take(2).join("/").takeWhile((x) -> x != "@")
+    fixed ref = nameComponents.last.split("@")[1]
 }
 
 package = new Listing<Package> {
