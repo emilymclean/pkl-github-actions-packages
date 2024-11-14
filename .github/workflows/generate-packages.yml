@@ -32,14 +32,14 @@ jobs:
             pip install pkl-github-actions-step-generator==0.1.13
             mkdir output
         - name: Build package
-          run: >
-            pkl-github-actions-step-generator from-remote "${{ matrix.package.name }}"
-              ${{ matrix.package.deprecated && '--deprecated' || '' }} 
-              -o "output/action.yml" 
-              --generate-pklproject
-              --package-baseuri "emilym.cl/pkl-github-actions-packages/${{ matrix.package.name }}"
-              --package-output "output/PklProject"
-              --yaml-constraints-file "constraints.yml"
+          run: |
+            pkl-github-actions-step-generator from-remote "${{ matrix.package.name }}" \
+              ${{ matrix.package.deprecated && '--deprecated' || '' }} \
+              -o "output/action.yml" \
+              --generate-pklproject \
+              --package-baseuri "emilym.cl/pkl-github-actions-packages/${{ matrix.package.name }}" \
+              --package-output "output/PklProject" \
+              --yaml-constraints-file "constraints.yml" \
         - name: Check output
           run: |
             ls -l output/
