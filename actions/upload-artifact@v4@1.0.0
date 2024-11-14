@@ -1,0 +1,11 @@
+{
+  "name": "actions/upload-artifact@v4",
+  "packageUri": "package://emilym.cl/pkl-github-actions-packages/actions/upload-artifact@v4@1.0.0",
+  "version": "1.0.0",
+  "packageZipUrl": "https://emilym.cl/pkl-github-actions-packages/actions/upload-artifact@v4@1.0.0.zip",
+  "packageZipChecksums": {
+    "sha256": "17963b0a33ba0c08916bb082e9adce25a8a2b6cc14ab6c7dd120846ff68f366a"
+  },
+  "dependencies": {},
+  "authors": []
+}

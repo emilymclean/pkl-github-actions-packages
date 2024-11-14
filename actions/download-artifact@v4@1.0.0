@@ -1,0 +1,11 @@
+{
+  "name": "actions/download-artifact@v4",
+  "packageUri": "package://emilym.cl/pkl-github-actions-packages/actions/download-artifact@v4@1.0.0",
+  "version": "1.0.0",
+  "packageZipUrl": "https://emilym.cl/pkl-github-actions-packages/actions/download-artifact@v4@1.0.0.zip",
+  "packageZipChecksums": {
+    "sha256": "9ed5fb801cc8865000b6ed0ae04e5edefc6d817accc27b30df278ab4ed1f206c"
+  },
+  "dependencies": {},
+  "authors": []
+}
