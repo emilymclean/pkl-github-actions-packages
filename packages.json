@@ -10,6 +10,24 @@
       "outputPath": "pkg/actions/"
     },
     {
+      "name": "actions/upload-artifact@v4",
+      "version": "1.0.0",
+      "deprecated": false,
+      "artifactName": "package_actions_upload-artifact@v4",
+      "packageName": "upload-artifact@v4@1.0.0",
+      "buildPath": ".out/actions/upload-artifact@v4@1.0.0/",
+      "outputPath": "pkg/actions/"
+    },
+    {
+      "name": "actions/download-artifact@v4",
+      "version": "1.0.0",
+      "deprecated": false,
+      "artifactName": "package_actions_download-artifact@v4",
+      "packageName": "download-artifact@v4@1.0.0",
+      "buildPath": ".out/actions/download-artifact@v4@1.0.0/",
+      "outputPath": "pkg/actions/"
+    },
+    {
       "name": "gittools/actions/gitversion/setup@v3.0.0",
       "version": "1.0.0",
       "deprecated": false,

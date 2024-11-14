@@ -3,16 +3,16 @@ actions/checkout@v4:
     repository: String?
     ref: String?
     token: String?
-    ssh-strict: bool?
+    ssh-strict: Boolean?
     ssh-user: String?
-    persist-credentials: bool?
+    persist-credentials: Boolean?
     path: String?
-    clean: bool?
-    sparse-checkout-cone-mode: bool?
+    clean: Boolean?
+    sparse-checkout-cone-mode: Boolean?
     fetch-depth: Int?
-    fetch-tags: bool?
-    show-progress: bool?
-    lfs: bool?
-    submodules: bool?
-    set-safe-directory: bool?
-    github-server-url: bool?
+    fetch-tags: Boolean?
+    show-progress: Boolean?
+    lfs: Boolean?
+    submodules: Boolean?
+    set-safe-directory: Boolean?
+    github-server-url: Boolean?
