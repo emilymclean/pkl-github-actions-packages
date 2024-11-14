@@ -3,7 +3,7 @@ class Package {
     version: String = "1.0.0"
     deprecated: Boolean = false
 
-    fixed artifactName = name.replaceAll("/", "_")
+    fixed artifactName = "package_\(name.replaceAll("/", "_"))"
 }
 
 package = new Listing<Package> {

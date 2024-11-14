@@ -15,42 +15,63 @@ jobs:
       - run: |-
           echo "packages=$(echo $(cat packages.json))" >> ${GITHUB_ENV}
   build:
-      runs-on: ubuntu-latest
-      permissions:
-        contents: write
-      needs:
-        - packages-list
-      strategy:
-        matrix: ${{fromJson(needs.packages-list.outputs.packages)}}
-      steps:
-        - uses: actions/checkout@v4
-        - uses: actions/setup-python@v5
-          with:
-            python-version: '3.13'
-        - name: Install generator
-          run: | 
-            pip install pkl-github-actions-step-generator==0.1.13
-            mkdir output
-        - name: Build package
-          run: |
-            pkl-github-actions-step-generator from-remote "${{ matrix.package.name }}" \
-              ${{ matrix.package.deprecated && '--deprecated' || '' }} \
-              -o "output/action.pkl" \
-              --generate-pklproject \
-              --package-baseuri "emilym.cl/pkl-github-actions-packages/${{ matrix.package.name }}" \
-              --package-output "output/PklProject" \
-              --yaml-constraints-file "constraints.yml" \
-              --package-version "${{ matrix.package.version }}"
-        - name: Install pkl
-          uses: pkl-community/setup-pkl@v0
-          with:
-            pkl-version: 0.27.0
-        - name: Package Pkl
-          run: | 
-            pkl project package --skip-publish-check ./output
-            mv .out/*/* pkg
-        - name: Upload artifact
-          uses: actions/upload-artifact@v4
-          with:
-            name: ${{ matrix.package.artifactName }}
-            path: pkg
+    runs-on: ubuntu-latest
+    needs:
+      - packages-list
+    strategy:
+      matrix: ${{fromJson(needs.packages-list.outputs.packages)}}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Install generator
+        run: | 
+          pip install pkl-github-actions-step-generator==0.1.13
+          mkdir output
+      - name: Build package
+        run: |
+          pkl-github-actions-step-generator from-remote "${{ matrix.package.name }}" \
+            ${{ matrix.package.deprecated && '--deprecated' || '' }} \
+            -o "output/action.pkl" \
+            --generate-pklproject \
+            --package-baseuri "emilym.cl/pkl-github-actions-packages/${{ matrix.package.name }}" \
+            --package-output "output/PklProject" \
+            --yaml-constraints-file "constraints.yml" \
+            --package-version "${{ matrix.package.version }}"
+      - name: Install pkl
+        uses: pkl-community/setup-pkl@v0
+        with:
+          pkl-version: 0.27.0
+      - name: Package Pkl
+        run: | 
+          mkdir -p "pkg/${{ matrix.package.name }}"
+          pkl project package --skip-publish-check ./output
+          mv .out/* "pkg/${{ matrix.package.name }}"
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.package.artifactName }}
+          path: pkg
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    needs: 
+      - build
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: pages
+          ref: gh-pages
+      - run: mkdir artifacts
+      - uses: actions/download-artifact@v4
+        with:
+          path: artifacts
+          pattern: package_*
+      - run: ls -lR artifacts
+      # - uses: stefanzweifel/git-auto-commit-action@v5
+      #   with:
+      #     repository: ./pages
+      #     commit_message: "Update packages"
+    
