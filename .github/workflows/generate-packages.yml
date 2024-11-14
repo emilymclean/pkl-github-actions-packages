@@ -35,12 +35,11 @@ jobs:
         with:
           ref: tracking
           path: tracking
-          fetch-tags: true
       - run: |
           foreign_sha="$(cd foreign && git rev-parse HEAD)"
           echo "$foreign_sha"
           if [ -f "tracking/${{ matrix.package.name }}.sha" ]; then
-            current_sha="$(cat ${{ matrix.package.name }}.sha)"
+            current_sha="$(cat tracking/${{ matrix.package.name }}.sha)"
             echo "$current_sha"
             if [[ "$foreign_sha" == "$current_sha" ]]; then
               echo "continue=false" >> $GITHUB_ENV
