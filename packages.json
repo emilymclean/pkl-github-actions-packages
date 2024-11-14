@@ -3,7 +3,8 @@
     {
       "name": "actions/checkout@v4",
       "version": "1.0.0",
-      "deprecated": false
+      "deprecated": false,
+      "artifactName": "actions_checkout@v4"
     }
   ]
 }

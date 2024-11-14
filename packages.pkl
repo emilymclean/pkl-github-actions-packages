@@ -2,6 +2,8 @@ class Package {
     name: String
     version: String = "1.0.0"
     deprecated: Boolean = false
+
+    fixed artifactName = name.replaceAll("/", "_")
 }
 
 package = new Listing<Package> {
