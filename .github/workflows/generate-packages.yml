@@ -71,7 +71,7 @@ jobs:
           path: artifacts
           pattern: package_*
       - run: | 
-          mv artifacts/*/* pages/
+          rsync -av artifacts/*/ pages/
           ls -lR pages/
       - uses: stefanzweifel/git-auto-commit-action@v5
         with:
