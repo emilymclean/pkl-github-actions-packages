@@ -48,7 +48,7 @@ jobs:
           fi
           mkdir -p "sha/${{ matrix.package.outputPath }}"
           echo "continue=true" >> $GITHUB_ENV
-          echo "$foreign_sha" > "sha/${{ matrix.package.name }}.sha"
+          printf "$foreign_sha" > "sha/${{ matrix.package.name }}.sha"
       - name: Upload artifact
         if: env.continue
         uses: actions/upload-artifact@v4
