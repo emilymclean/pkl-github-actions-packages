@@ -1,0 +1,18 @@
+actions/checkout@v4:
+  inputs:
+    repository: String?
+    ref: String?
+    token: String?
+    ssh-strict: bool?
+    ssh-user: String?
+    persist-credentials: bool?
+    path: String?
+    clean: bool?
+    sparse-checkout-cone-mode: bool?
+    fetch-depth: Int?
+    fetch-tags: bool?
+    show-progress: bool?
+    lfs: bool?
+    submodules: bool?
+    set-safe-directory: bool?
+    github-server-url: bool?

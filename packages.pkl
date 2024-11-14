@@ -1,0 +1,10 @@
+class Package {
+    name: String
+    deprecated: Boolean = false
+}
+
+packages = new Listing<Package> {
+    new Package {
+        name = "actions/checkout@v4"
+    }
+}

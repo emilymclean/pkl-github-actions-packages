@@ -1,0 +1,44 @@
+name: Generate Packages
+
+'on':
+  push:
+    branches:
+    - main
+
+jobs:
+  packages-list:
+    runs-on: ubuntu-latest
+    outputs:
+      packages: ${{ env.packages }}
+    steps:
+      - uses: actions/checkout@v4
+      - run: |-
+          echo "packages=$(cat packages.json)" >> ${GITHUB_ENV}
+  build:
+      runs-on: ubuntu-latest
+      permissions:
+        contents: write
+      needs:
+        - packages-list
+      strategy:
+        matrix: ${{fromJson(needs.packages-list.outputs.packages)}}
+      steps:
+        - uses: actions/checkout@v4
+        - uses: actions/setup-python@v5
+          with:
+            python-version: '3.13'
+        - name: Install generator
+          run: | 
+            pip install pkl-github-actions-step-generator==0.1.12
+            mkdir output
+        - name: Build package
+          run: >
+            pkl-github-actions-step-generator from-remote "${{ matrix.package.name }}"
+              ${{ matrix.package.deprecated && "--deprecated" || "" }} -o "output/action.yml" --generate-pklproject
+              --package-baseuri "emilym.cl/pkl-github-actions-packages/${{ matrix.package.name }}"
+              --package-output "output/PklProject"
+        - name: Check output
+          run: |
+            ls -l output/
+            cat output/action.pkl
+            cat output/PklProject
