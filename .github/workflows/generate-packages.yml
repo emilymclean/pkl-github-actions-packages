@@ -46,6 +46,7 @@ jobs:
               exit 0
             fi
           fi
+          mkdir -p "tracking/${{ matrix.package.outputPath }}"
           echo "continue=true" >> $GITHUB_ENV
           echo "$current_sha" > ${{ matrix.package.name }}.sha
       - name: Upload artifact
@@ -82,10 +83,10 @@ jobs:
       - name: Package Pkl
         if: env.continue
         run: | 
-          mkdir -p "pkg/${{ matrix.package.name }}"
+          mkdir -p "pkg/${{ matrix.package.outputPath }}"
           pkl project package --skip-publish-check ./output
           sed -i "s|pkl-github-actions-packages/${{ matrix.package.name }}/|pkl-github-actions-packages/|g" "${{ matrix.package.buildPath }}/${{ matrix.package.packageName }}"
-          mv ${{ matrix.package.buildPath }}* "${{ matrix.package.outputPath }}"
+          mv ${{ matrix.package.buildPath }}* "pkg/${{ matrix.package.outputPath }}"
       - name: Upload artifact
         if: env.continue
         uses: actions/upload-artifact@v4
