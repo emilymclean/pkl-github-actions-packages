@@ -1,0 +1,11 @@
+{
+  "name": "actions/checkout@v4",
+  "packageUri": "package://emilym.cl/pkl-github-actions-packages/actions/checkout@v4@1.0.0",
+  "version": "1.0.0",
+  "packageZipUrl": "https://emilym.cl/pkl-github-actions-packages/actions/checkout@v4@1.0.0.zip",
+  "packageZipChecksums": {
+    "sha256": "b4c192226963966f66e1caff55d1cef761ce97ee6ffbe6995ea20e0be3842c11"
+  },
+  "dependencies": {},
+  "authors": []
+}

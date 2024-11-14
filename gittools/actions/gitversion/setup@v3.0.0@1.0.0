@@ -1,0 +1,11 @@
+{
+  "name": "gittools/actions/gitversion/setup@v3.0.0",
+  "packageUri": "package://emilym.cl/pkl-github-actions-packages/gittools/actions/gitversion/setup@v3.0.0@1.0.0",
+  "version": "1.0.0",
+  "packageZipUrl": "https://emilym.cl/pkl-github-actions-packages/gittools/actions/gitversion/setup@v3.0.0@1.0.0.zip",
+  "packageZipChecksums": {
+    "sha256": "b034a395145d44099fa00dc94d76a4e70eba13f7da584a14306e46447babcace"
+  },
+  "dependencies": {},
+  "authors": []
+}
