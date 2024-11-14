@@ -46,11 +46,11 @@ jobs:
             fi
             echo "$current_sha" > ${{ matrix.package.name }}.sha
           fi
-      - uses: stefanzweifel/git-auto-commit-action@v5
-        if: github.event_name != 'pull_request'
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
         with:
-          repository: ./tracking
-          commit_message: "Update sha for ${{ matrix.package.name }}"
+          name: ${{ matrix.package.shaArtifactName }}
+          path: tracking/${{ matrix.package.name }}.sha
       - uses: actions/setup-python@v5
         with:
           python-version: '3.13'
@@ -95,16 +95,29 @@ jobs:
         with:
           path: pages
           ref: gh-pages
-      - run: mkdir artifacts
+      - uses: actions/checkout@v4
+        with:
+          path: tracking
+          ref: tracking
+      - run: mkdir artifacts shas
       - uses: actions/download-artifact@v4
         with:
           path: artifacts
           pattern: package_*
+      - uses: actions/download-artifact@v4
+        with:
+          path: shas
+          pattern: sha_*
       - run: | 
           rsync -av artifacts/*/ pages/
+          rsync -av shas/*/ tracking/
           ls -lR pages/
       - uses: stefanzweifel/git-auto-commit-action@v5
         with:
           repository: ./pages
           commit_message: "Update packages"
+      - uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          repository: ./tracking
+          commit_message: "Update shas"
     
