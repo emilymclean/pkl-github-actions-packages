@@ -38,17 +38,18 @@ jobs:
       - run: |
           foreign_sha="$(cd foreign && git rev-parse HEAD)"
           echo "$foreign_sha"
+          shas_match="true"
           if [ -f "tracking/${{ matrix.package.name }}.sha" ]; then
             current_sha="$(cat tracking/${{ matrix.package.name }}.sha)"
             echo "$current_sha"
             if [[ "$foreign_sha" == "$current_sha" ]]; then
-              echo "continue=false" >> $GITHUB_ENV
-              exit 0
+              echo "SHAs match! No changes necessary."
+              shas_match="false"
             fi
           fi
           mkdir -p "sha/${{ matrix.package.outputPath }}"
-          echo "continue=true" >> $GITHUB_ENV
-          printf "$foreign_sha" > "sha/${{ matrix.package.name }}.sha"
+          echo "continue=$shas_match" >> $GITHUB_ENV
+          echo "$foreign_sha" > "sha/${{ matrix.package.name }}.sha"
       - name: Upload artifact
         if: env.continue
         uses: actions/upload-artifact@v4
