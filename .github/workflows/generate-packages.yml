@@ -4,6 +4,9 @@ name: Generate Packages
   push:
     branches:
     - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
   packages-list:
@@ -22,14 +25,47 @@ jobs:
       matrix: ${{fromJson(needs.packages-list.outputs.packages)}}
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          repository: ${{ matrix.package.repository }}
+          ref: ${{ matrix.package.ref }}
+          path: foreign
+      - uses: actions/checkout@v4
+        with:
+          ref: tracking
+          path: tracking
+          fetch-tags: true
+      - run: |
+          foreign_sha="$(cd foreign && git rev-parse HEAD)"
+          echo "$foreign_sha"
+          if [ -f "${{ matrix.package.name }}.sha" ]; then
+            current_sha="$(cat ${{ matrix.package.name }}.sha)"
+            echo "$current_sha"
+            if [[ "$foreign_sha" == "$current_sha" ]]; then
+              echo "continue=false" >> $GITHUB_ENV
+              exit 0
+            fi
+          fi
+          mkdir -p "tracking/${{ matrix.package.outputPath }}"
+          echo "continue=true" >> $GITHUB_ENV
+          echo "$current_sha" > "tracking/${{ matrix.package.name }}.sha"
+      - name: Upload artifact
+        if: env.continue
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.package.shaArtifactName }}
+          path: tracking/${{ matrix.package.name }}.sha
       - uses: actions/setup-python@v5
+        if: env.continue
         with:
           python-version: '3.13'
       - name: Install generator
+        if: env.continue
         run: | 
           pip install pkl-github-actions-step-generator==0.1.13
           mkdir output
       - name: Build package
+        if: env.continue
         run: |
           pkl-github-actions-step-generator from-remote "${{ matrix.package.name }}" \
             ${{ matrix.package.deprecated && '--deprecated' || '' }} \
@@ -40,22 +76,26 @@ jobs:
             --yaml-constraints-file "constraints.yml" \
             --package-version "${{ matrix.package.version }}"
       - name: Install pkl
+        if: env.continue
         uses: pkl-community/setup-pkl@v0
         with:
           pkl-version: 0.27.0
       - name: Package Pkl
+        if: env.continue
         run: | 
-          mkdir -p "pkg/${{ matrix.package.name }}"
+          mkdir -p "pkg/${{ matrix.package.outputPath }}"
           pkl project package --skip-publish-check ./output
           sed -i "s|pkl-github-actions-packages/${{ matrix.package.name }}/|pkl-github-actions-packages/|g" "${{ matrix.package.buildPath }}/${{ matrix.package.packageName }}"
-          mv ${{ matrix.package.buildPath }}* "${{ matrix.package.outputPath }}"
+          mv ${{ matrix.package.buildPath }}* "pkg/${{ matrix.package.outputPath }}"
       - name: Upload artifact
+        if: env.continue
         uses: actions/upload-artifact@v4
         with:
           name: ${{ matrix.package.artifactName }}
           path: pkg
   publish:
     runs-on: ubuntu-latest
+    if: github.event_name != 'pull_request'
     permissions:
       contents: write
     needs: 
@@ -65,16 +105,29 @@ jobs:
         with:
           path: pages
           ref: gh-pages
-      - run: mkdir artifacts
+      - uses: actions/checkout@v4
+        with:
+          path: tracking
+          ref: tracking
+      - run: mkdir artifacts shas
       - uses: actions/download-artifact@v4
         with:
           path: artifacts
           pattern: package_*
+      - uses: actions/download-artifact@v4
+        with:
+          path: shas
+          pattern: sha_*
       - run: | 
           rsync -av artifacts/*/ pages/
+          rsync -av shas/*/ tracking/
           ls -lR pages/
       - uses: stefanzweifel/git-auto-commit-action@v5
         with:
           repository: ./pages
           commit_message: "Update packages"
+      - uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          repository: ./tracking
+          commit_message: "Update shas"
     
