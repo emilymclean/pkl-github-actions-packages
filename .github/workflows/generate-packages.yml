@@ -42,23 +42,30 @@ jobs:
             current_sha="$(cat ${{ matrix.package.name }}.sha)"
             echo "$current_sha"
             if [[ "$foreign_sha" == "$current_sha" ]]; then
+              echo "continue=false" >> $GITHUB_ENV
               exit 0
+            else
+              echo "continue=true" >> $GITHUB_ENV
             fi
             echo "$current_sha" > ${{ matrix.package.name }}.sha
           fi
       - name: Upload artifact
+        if: env.continue
         uses: actions/upload-artifact@v4
         with:
           name: ${{ matrix.package.shaArtifactName }}
           path: tracking/${{ matrix.package.name }}.sha
       - uses: actions/setup-python@v5
+        if: env.continue
         with:
           python-version: '3.13'
       - name: Install generator
+        if: env.continue
         run: | 
           pip install pkl-github-actions-step-generator==0.1.13
           mkdir output
       - name: Build package
+        if: env.continue
         run: |
           pkl-github-actions-step-generator from-remote "${{ matrix.package.name }}" \
             ${{ matrix.package.deprecated && '--deprecated' || '' }} \
@@ -69,16 +76,19 @@ jobs:
             --yaml-constraints-file "constraints.yml" \
             --package-version "${{ matrix.package.version }}"
       - name: Install pkl
+        if: env.continue
         uses: pkl-community/setup-pkl@v0
         with:
           pkl-version: 0.27.0
       - name: Package Pkl
+        if: env.continue
         run: | 
           mkdir -p "pkg/${{ matrix.package.name }}"
           pkl project package --skip-publish-check ./output
           sed -i "s|pkl-github-actions-packages/${{ matrix.package.name }}/|pkl-github-actions-packages/|g" "${{ matrix.package.buildPath }}/${{ matrix.package.packageName }}"
           mv ${{ matrix.package.buildPath }}* "${{ matrix.package.outputPath }}"
       - name: Upload artifact
+        if: env.continue
         uses: actions/upload-artifact@v4
         with:
           name: ${{ matrix.package.artifactName }}
