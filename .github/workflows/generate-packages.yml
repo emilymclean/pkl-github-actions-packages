@@ -47,15 +47,15 @@ jobs:
               exit 0
             fi
           fi
-          mkdir -p "tracking/${{ matrix.package.outputPath }}"
+          mkdir -p "sha/${{ matrix.package.outputPath }}"
           echo "continue=true" >> $GITHUB_ENV
-          echo "$current_sha" > "tracking/${{ matrix.package.name }}.sha"
+          echo "$foreign_sha" > "sha/${{ matrix.package.name }}.sha"
       - name: Upload artifact
         if: env.continue
         uses: actions/upload-artifact@v4
         with:
           name: ${{ matrix.package.shaArtifactName }}
-          path: tracking/${{ matrix.package.name }}.sha
+          path: sha/
       - uses: actions/setup-python@v5
         if: env.continue
         with:
