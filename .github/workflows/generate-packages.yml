@@ -44,11 +44,10 @@ jobs:
             if [[ "$foreign_sha" == "$current_sha" ]]; then
               echo "continue=false" >> $GITHUB_ENV
               exit 0
-            else
-              echo "continue=true" >> $GITHUB_ENV
             fi
-            echo "$current_sha" > ${{ matrix.package.name }}.sha
           fi
+          echo "continue=true" >> $GITHUB_ENV
+          echo "$current_sha" > ${{ matrix.package.name }}.sha
       - name: Upload artifact
         if: env.continue
         uses: actions/upload-artifact@v4
