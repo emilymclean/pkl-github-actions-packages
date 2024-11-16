@@ -34,4 +34,16 @@ package = new Listing<Package> {
     new Package {
         name = "pkl-community/setup-pkl@v0"
     }
+    new Package {
+        name = "docker/build-push-action@v4"
+    }
+    new Package {
+        name = "docker/setup-qemu-action@v3"
+    }
+    new Package {
+        name = "docker/setup-buildx-action@v3"
+    }
+    new Package {
+        name = "docker/login-action@v3"
+    }
 }
