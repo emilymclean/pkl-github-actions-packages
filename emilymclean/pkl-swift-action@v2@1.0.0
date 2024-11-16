@@ -1,0 +1,11 @@
+{
+  "name": "emilymclean/pkl-swift-action@v2",
+  "packageUri": "package://emilym.cl/pkl-github-actions-packages/emilymclean/pkl-swift-action@v2@1.0.0",
+  "version": "1.0.0",
+  "packageZipUrl": "https://emilym.cl/pkl-github-actions-packages/emilymclean/pkl-swift-action@v2@1.0.0.zip",
+  "packageZipChecksums": {
+    "sha256": "4f1606850ad1c3c95b93691e8ea4b9a420bfd6c9a5667ae673fd62b4813b2b7b"
+  },
+  "dependencies": {},
+  "authors": []
+}

@@ -1,0 +1,11 @@
+{
+  "name": "emilymclean/pack-chromium-extension-action@v1",
+  "packageUri": "package://emilym.cl/pkl-github-actions-packages/emilymclean/pack-chromium-extension-action@v1@1.0.0",
+  "version": "1.0.0",
+  "packageZipUrl": "https://emilym.cl/pkl-github-actions-packages/emilymclean/pack-chromium-extension-action@v1@1.0.0.zip",
+  "packageZipChecksums": {
+    "sha256": "5724f9be01b5b7932d03dd5011a200fcfbc0d0eca38dea29675c4b0650ec210d"
+  },
+  "dependencies": {},
+  "authors": []
+}

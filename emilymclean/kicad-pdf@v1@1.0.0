@@ -1,0 +1,11 @@
+{
+  "name": "emilymclean/kicad-pdf@v1",
+  "packageUri": "package://emilym.cl/pkl-github-actions-packages/emilymclean/kicad-pdf@v1@1.0.0",
+  "version": "1.0.0",
+  "packageZipUrl": "https://emilym.cl/pkl-github-actions-packages/emilymclean/kicad-pdf@v1@1.0.0.zip",
+  "packageZipChecksums": {
+    "sha256": "3da656ceb9d169ba866512d7419082cc18cdf8e9ba5d9b71b7e305eba95d222f"
+  },
+  "dependencies": {},
+  "authors": []
+}

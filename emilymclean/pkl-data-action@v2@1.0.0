@@ -1,0 +1,11 @@
+{
+  "name": "emilymclean/pkl-data-action@v2",
+  "packageUri": "package://emilym.cl/pkl-github-actions-packages/emilymclean/pkl-data-action@v2@1.0.0",
+  "version": "1.0.0",
+  "packageZipUrl": "https://emilym.cl/pkl-github-actions-packages/emilymclean/pkl-data-action@v2@1.0.0.zip",
+  "packageZipChecksums": {
+    "sha256": "77cac6dbea690484b35c12574aa44af1cf81e5be5ab2c06169c10e90fbdf641a"
+  },
+  "dependencies": {},
+  "authors": []
+}

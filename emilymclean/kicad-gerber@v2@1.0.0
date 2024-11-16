@@ -1,0 +1,11 @@
+{
+  "name": "emilymclean/kicad-gerber@v2",
+  "packageUri": "package://emilym.cl/pkl-github-actions-packages/emilymclean/kicad-gerber@v2@1.0.0",
+  "version": "1.0.0",
+  "packageZipUrl": "https://emilym.cl/pkl-github-actions-packages/emilymclean/kicad-gerber@v2@1.0.0.zip",
+  "packageZipChecksums": {
+    "sha256": "ab19e614c4133dbc2b0cd89d57a32b1da50ed405cc7edaafaa3fa8fc74052f5d"
+  },
+  "dependencies": {},
+  "authors": []
+}

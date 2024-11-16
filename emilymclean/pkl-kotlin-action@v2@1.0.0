@@ -1,0 +1,11 @@
+{
+  "name": "emilymclean/pkl-kotlin-action@v2",
+  "packageUri": "package://emilym.cl/pkl-github-actions-packages/emilymclean/pkl-kotlin-action@v2@1.0.0",
+  "version": "1.0.0",
+  "packageZipUrl": "https://emilym.cl/pkl-github-actions-packages/emilymclean/pkl-kotlin-action@v2@1.0.0.zip",
+  "packageZipChecksums": {
+    "sha256": "53b55c5960c8f8378fbf5a0b7b5d84bd2ef33891a392a886ba1f8ff2a00701b0"
+  },
+  "dependencies": {},
+  "authors": []
+}
