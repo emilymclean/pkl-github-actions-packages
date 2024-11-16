@@ -16,7 +16,12 @@ jobs:
       packages: ${{ env.packages }}
     steps:
       - uses: actions/checkout@v4
+      - name: Install pkl
+        uses: pkl-community/setup-pkl@v0
+        with:
+          pkl-version: 0.27.0
       - run: |-
+          pkl eval packages.pkl -f json -o packages.json
           echo "packages=$(echo $(cat packages.json))" >> ${GITHUB_ENV}
   build:
     runs-on: ubuntu-latest
