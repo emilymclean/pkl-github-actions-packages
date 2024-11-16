@@ -41,8 +41,8 @@ jobs:
           foreign_sha="$(cd foreign && git rev-parse HEAD)"
           echo "$foreign_sha"
           continue=false
-          if [ -f "${{ matrix.package.packageName }}.sha" ]; then
-            current_sha="$(cat ${{ matrix.package.packageName }}.sha)"
+          if [ -f "${{ matrix.package.shaDownloadName }}" ]; then
+            current_sha="$(cat ${{ matrix.package.shaDownloadName }})"
             echo "$current_sha"
             if [[ "$foreign_sha" == "$current_sha" ]]; then
               echo "SHAs match! No changes necessary."

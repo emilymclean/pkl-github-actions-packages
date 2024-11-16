@@ -7,6 +7,7 @@ class Package {
 
     fixed artifactName = "package_\(name.replaceAll("/", "_"))"
     fixed shaArtifactName = "sha_\(name.replaceAll("/", "_"))"
+    fixed shaDownloadName = "\(nameComponents.last).sha"
     fixed packageName = "\(nameComponents.last)@\(version)"
     fixed buildPath = ".out/\(name)@\(version)/"
     fixed outputPath = "\(nameComponents.take(nameComponents.length - 1).join("/"))/"
