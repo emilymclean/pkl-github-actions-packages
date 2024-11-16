@@ -1,0 +1,11 @@
+{
+  "name": "pkl-community/setup-pkl@v0",
+  "packageUri": "package://emilym.cl/pkl-github-actions-packages/pkl-community/setup-pkl@v0@1.0.0",
+  "version": "1.0.0",
+  "packageZipUrl": "https://emilym.cl/pkl-github-actions-packages/pkl-community/setup-pkl@v0@1.0.0.zip",
+  "packageZipChecksums": {
+    "sha256": "6a130d6af0e7e5157a788ab4ce83a86c6640088dbd10f3d12e8b641f15edfd21"
+  },
+  "dependencies": {},
+  "authors": []
+}
