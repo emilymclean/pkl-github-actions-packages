@@ -1,0 +1,11 @@
+{
+  "name": "docker/build-push-action@v4",
+  "packageUri": "package://emilym.cl/pkl-github-actions-packages/docker/build-push-action@v4@1.0.0",
+  "version": "1.0.0",
+  "packageZipUrl": "https://emilym.cl/pkl-github-actions-packages/docker/build-push-action@v4@1.0.0.zip",
+  "packageZipChecksums": {
+    "sha256": "fff51db873e891847f5cdafaa39ef643fbd7422b6165d14da4da6434d5b13317"
+  },
+  "dependencies": {},
+  "authors": []
+}

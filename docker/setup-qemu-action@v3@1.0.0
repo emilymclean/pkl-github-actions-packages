@@ -1,0 +1,11 @@
+{
+  "name": "docker/setup-qemu-action@v3",
+  "packageUri": "package://emilym.cl/pkl-github-actions-packages/docker/setup-qemu-action@v3@1.0.0",
+  "version": "1.0.0",
+  "packageZipUrl": "https://emilym.cl/pkl-github-actions-packages/docker/setup-qemu-action@v3@1.0.0.zip",
+  "packageZipChecksums": {
+    "sha256": "ef5daf719343bec096dccfe8b81a37397ddd731667496c61da04465ff6eec4f5"
+  },
+  "dependencies": {},
+  "authors": []
+}

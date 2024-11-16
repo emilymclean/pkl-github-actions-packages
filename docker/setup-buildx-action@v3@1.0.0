@@ -1,0 +1,11 @@
+{
+  "name": "docker/setup-buildx-action@v3",
+  "packageUri": "package://emilym.cl/pkl-github-actions-packages/docker/setup-buildx-action@v3@1.0.0",
+  "version": "1.0.0",
+  "packageZipUrl": "https://emilym.cl/pkl-github-actions-packages/docker/setup-buildx-action@v3@1.0.0.zip",
+  "packageZipChecksums": {
+    "sha256": "bccf9ef1747c8973c00cc8bafd1b2ebe947cf257e2b51a56ea3a9a5a7f9bb920"
+  },
+  "dependencies": {},
+  "authors": []
+}
