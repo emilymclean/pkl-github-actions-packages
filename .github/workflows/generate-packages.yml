@@ -43,13 +43,13 @@ jobs:
       - run: |
           foreign_sha="$(cd foreign && git rev-parse HEAD)"
           echo "$foreign_sha"
-          continue=true
+          continue=false
           if [ -f "tracking/${{ matrix.package.name }}.sha" ]; then
             current_sha="$(cat tracking/${{ matrix.package.name }}.sha)"
             echo "$current_sha"
             if [[ "$foreign_sha" == "$current_sha" ]]; then
               echo "SHAs match! No changes necessary."
-              continue=false
+              continue=true
             fi
           fi
           mkdir -p "sha/${{ matrix.package.outputPath }}"
