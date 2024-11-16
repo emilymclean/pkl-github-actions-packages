@@ -36,16 +36,13 @@ jobs:
           repository: ${{ matrix.package.repository }}
           ref: ${{ matrix.package.ref }}
           path: foreign
-      - uses: actions/checkout@v4
-        with:
-          ref: tracking
-          path: tracking
       - run: |
+          wget "https://raw.githubusercontent.com/emilymclean/pkl-github-actions-packages/refs/heads/tracking/${{ matrix.package.name }}.sha" || true
           foreign_sha="$(cd foreign && git rev-parse HEAD)"
           echo "$foreign_sha"
           continue=false
-          if [ -f "tracking/${{ matrix.package.name }}.sha" ]; then
-            current_sha="$(cat tracking/${{ matrix.package.name }}.sha)"
+          if [ -f "${{ matrix.package.shaDownloadName }}" ]; then
+            current_sha="$(cat ${{ matrix.package.shaDownloadName }})"
             echo "$current_sha"
             if [[ "$foreign_sha" == "$current_sha" ]]; then
               echo "SHAs match! No changes necessary."
