@@ -47,4 +47,34 @@ package = new Listing<Package> {
     new Package {
         name = "docker/login-action@v3"
     }
+    new Package {
+        name = "emilymclean/pack-chromium-extension-action@v1"
+    }
+    new Package {
+        name = "emilymclean/openscad-build-action@v1"
+    }
+    new Package {
+        name = "emilymclean/pkldoc-action@v2"
+    }
+    new Package {
+        name = "emilymclean/pkl-swift-action@v2"
+    }
+    new Package {
+        name = "emilymclean/pkl-kotlin-action@v2"
+    }
+    new Package {
+        name = "emilymclean/pkl-data-action@v2"
+    }
+    new Package {
+        name = "emilymclean/pkl-java-action@v2"
+    }
+    new Package {
+        name = "emilymclean/kicad-bom@v2"
+    }
+    new Package {
+        name = "emilymclean/kicad-pdf@v1"
+    }
+    new Package {
+        name = "emilymclean/kicad-gerber@v2"
+    }
 }
